@@ -12,4 +12,3 @@ protocol StatisticService {
     var gamesCount: Int { get }
     var bestGame: GameRecord { get }
 }
-

@@ -10,26 +10,39 @@ import Foundation
 class QuestionFactory: QuestionFactoryProtocol {
     private let moviesLoader: MoviesLoading
     private weak var delegate: QuestionFactoryDelegate?
-    private var movies: [MostPopularMovie] = []
     
     init(moviesLoader: MoviesLoading, delegate: QuestionFactoryDelegate?) {
         self.moviesLoader = moviesLoader
         self.delegate = delegate
     }
+    
+    private var movies: [MostPopularMovie] = []
+        
+    private enum MoviesNotFound: Error {
+        case codeError
+    }
+
     func loadData() {
-            moviesLoader.loadMovies { [weak self] result in
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    switch result {
-                    case .success(let mostPopularMovies):
-                        self.movies = mostPopularMovies.items
+        moviesLoader.loadMovies { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let movies):
+                    if movies.items.isEmpty {
+                        self.delegate?.didFailToLoadData(with: MoviesNotFound.codeError)
+                    } else {
+                        self.movies = movies.items
                         self.delegate?.didLoadDataFromServer()
-                    case .failure(let error):
-                        self.delegate?.didFailToLoadData(with: error)
                     }
+
+                case .failure(let error):
+                    self.delegate?.didFailToLoadData(with: error)
                 }
             }
         }
+    }
+    
     func requestNextQuestion() {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
@@ -38,9 +51,9 @@ class QuestionFactory: QuestionFactoryProtocol {
             guard let movie = self.movies[safe: index] else { return }
             
             var imageData = Data()
-            
-            do {
-                imageData = try Data(contentsOf: movie.resizedImageURL)
+           
+           do {
+                imageData = try Data(contentsOf: movie.imageURL)
             } catch {
                 print("Failed to load image")
             }
@@ -51,8 +64,8 @@ class QuestionFactory: QuestionFactoryProtocol {
             let correctAnswer = rating > 7
             
             let question = QuizQuestion(image: imageData,
-                                        text: text,
-                                        correctAnswer: correctAnswer)
+                                         text: text,
+                                         correctAnswer: correctAnswer)
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -60,6 +73,7 @@ class QuestionFactory: QuestionFactoryProtocol {
             }
         }
     }
+}
     
     
     /* private let questions: [QuizQuestion] = [
@@ -105,4 +119,4 @@ class QuestionFactory: QuestionFactoryProtocol {
      correctAnswer: false)
      ]
      */
-}
+
