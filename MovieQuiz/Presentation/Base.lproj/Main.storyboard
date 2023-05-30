@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-2E-upZ">
-                                <rect key="frame" x="20" y="58" width="374" height="804"/>
+                                <rect key="frame" x="20" y="58" width="374" height="758.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="tsc-HJ-3dF">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
@@ -53,7 +53,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUx-bz-PU3" userLabel="Question Label">
-                                        <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="624.5" width="374" height="54"/>
                                         <string key="text">Рейтинг этого фильма
 меньше чем 5?</string>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
@@ -61,7 +61,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gHG-2T-Hak">
-                                        <rect key="frame" x="0.0" y="744" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="698.5" width="374" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvv-37-UQq" userLabel="Кнопка Нет">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
@@ -116,11 +116,17 @@
                                     <constraint firstAttribute="trailing" secondItem="tsc-HJ-3dF" secondAttribute="trailing" id="q31-Cz-sSO"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" insetsLayoutMarginsFromSafeArea="NO" style="medium" id="Qfm-R4-953">
+                                <rect key="frame" x="0.0" y="438" width="414" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black (iOS)"/>
                         <constraints>
                             <constraint firstItem="dJ2-2E-upZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="E2V-E8-fhL"/>
+                            <constraint firstItem="Qfm-R4-953" firstAttribute="centerX" secondItem="dJ2-2E-upZ" secondAttribute="centerX" id="H5W-uP-YTc"/>
+                            <constraint firstItem="Qfm-R4-953" firstAttribute="centerY" secondItem="dJ2-2E-upZ" secondAttribute="centerY" id="O0l-NJ-AfM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dJ2-2E-upZ" secondAttribute="bottom" id="WRc-9N-xgy"/>
                             <constraint firstItem="dJ2-2E-upZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Y6W-Wb-AQm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dJ2-2E-upZ" secondAttribute="trailing" constant="20" id="bqG-Xc-qh2"/>
@@ -129,6 +135,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Qfm-R4-953" id="hJi-7A-CFg"/>
                         <outlet property="counterLabel" destination="h8G-Id-dzI" id="02b-yk-dlC"/>
                         <outlet property="imageView" destination="WeG-0L-66g" id="Z7U-Vy-uww"/>
                         <outlet property="noButton" destination="kvv-37-UQq" id="wwL-8K-Fs4"/>
