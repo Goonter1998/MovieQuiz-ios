@@ -2,7 +2,7 @@
 //  QuestionFactoryDelegate.swift
 //  MovieQuiz
 //
-//  Created by user on 28.05.2023.
+//  Created by user on 30.05.2023.
 //
 
 import Foundation
