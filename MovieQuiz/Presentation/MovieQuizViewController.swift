@@ -21,19 +21,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
     private var statisticService: StatisticService?
-    private let moviesLoader: MoviesLoading = MoviesLoader()
     // MARK: - Pubblic Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        yesButton.layer.cornerRadius = 15
-        noButton.layer.cornerRadius = 15
-        imageView.layer.cornerRadius = 20
-        imageView.layer.masksToBounds = true
-        alertPresenter = AlertPresenter(delegate: self)
-        questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
+            yesButton.layer.cornerRadius = 15
+            noButton.layer.cornerRadius = 15
+            imageView.layer.cornerRadius = 20
+            imageView.layer.masksToBounds = true
+            alertPresenter = AlertPresenter(delegate: self)
             statisticService = StatisticServiceImplementation()
-            showLoadingIndicator()
+            questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
             questionFactory?.loadData()
+            showLoadingIndicator()
     }
     // MARK: - QuestionFactoryDelegate
     
