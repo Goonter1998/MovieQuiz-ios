@@ -22,6 +22,5 @@ class AlertPresenter {
     init(delegate: UIViewController) {
         self.delegate = delegate
     }
-    
 }
 
