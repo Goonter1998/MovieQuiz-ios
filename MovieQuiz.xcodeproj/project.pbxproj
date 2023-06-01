@@ -35,6 +35,7 @@
 		CEAA21F02A227C88008AB6BE /* QuizStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA21EF2A227C88008AB6BE /* QuizStepViewModel.swift */; };
 		CEAA21F22A227C9B008AB6BE /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA21F12A227C9B008AB6BE /* QuizResultsViewModel.swift */; };
 		CEAA21F42A227CA9008AB6BE /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA21F32A227CA9008AB6BE /* QuizQuestion.swift */; };
+		CEBEF7EC2A2879D2007D9AA9 /* MovieQuizPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBEF7EB2A2879D2007D9AA9 /* MovieQuizPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		CEAA21EF2A227C88008AB6BE /* QuizStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStepViewModel.swift; sourceTree = "<group>"; };
 		CEAA21F12A227C9B008AB6BE /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsViewModel.swift; sourceTree = "<group>"; };
 		CEAA21F32A227CA9008AB6BE /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		CEBEF7EB2A2879D2007D9AA9 /* MovieQuizPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieQuizPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				AD1ABAB52831907B00B3E448 /* MovieQuizViewController.swift */,
+				CEBEF7EB2A2879D2007D9AA9 /* MovieQuizPresenter.swift */,
 				CE78600E2A25F1260057F192 /* AlertPresenter.swift */,
 				AD1ABAB72831907B00B3E448 /* Main.storyboard */,
 			);
@@ -372,6 +375,7 @@
 				CEAA21F02A227C88008AB6BE /* QuizStepViewModel.swift in Sources */,
 				CEAA21F42A227CA9008AB6BE /* QuizQuestion.swift in Sources */,
 				CE78600B2A25F0FA0057F192 /* StatisticService.swift in Sources */,
+				CEBEF7EC2A2879D2007D9AA9 /* MovieQuizPresenter.swift in Sources */,
 				CE78600D2A25F10A0057F192 /* StatisticServiceImplementation.swift in Sources */,
 				CEAA21ED2A227871008AB6BE /* QuestionFactory.swift in Sources */,
 				AD77F5742857F8810062FB14 /* Date+Extensions.swift in Sources */,

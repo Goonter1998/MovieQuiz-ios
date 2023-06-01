@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 class AlertPresenter {
-
    private weak var delegate: UIViewController?
     func show(_ alertModel: AlertModel) {
         let alert = UIAlertController(
