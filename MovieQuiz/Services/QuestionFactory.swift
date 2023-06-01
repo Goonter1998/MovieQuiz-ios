@@ -17,16 +17,17 @@ class QuestionFactory: QuestionFactoryProtocol {
     }
     
     private var movies: [MostPopularMovie] = []
-        
+    private let moreOrLess = ["больше", "меньше"]
+    private let scoreRange = Range(70...95)
+    
     private enum MoviesNotFound: Error {
         case codeError
     }
-
+    
     func loadData() {
         moviesLoader.loadMovies { result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                
                 switch result {
                 case .success(let movies):
                     if movies.items.isEmpty {
@@ -35,7 +36,7 @@ class QuestionFactory: QuestionFactoryProtocol {
                         self.movies = movies.items
                         self.delegate?.didLoadDataFromServer()
                     }
-
+                    
                 case .failure(let error):
                     self.delegate?.didFailToLoadData(with: error)
                 }
@@ -51,21 +52,29 @@ class QuestionFactory: QuestionFactoryProtocol {
             guard let movie = self.movies[safe: index] else { return }
             
             var imageData = Data()
-           
-           do {
-                imageData = try Data(contentsOf: movie.imageURL)
+            
+            do {
+                imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
                 print("Failed to load image")
             }
             
             let rating = Float(movie.rating) ?? 0
             
-            let text = "Рейтинг этого фильма больше чем 7?"
-            let correctAnswer = rating > 7
+            guard let maybeMoreOrLess = self.moreOrLess.randomElement() else { return }
+            guard let randomScore = self.scoreRange.randomElement() else { return }
+            let correctAnswer: Bool
+            
+            let text = "Рейтинг этого фильма \(maybeMoreOrLess) чем \(Float(randomScore) / 10)?"
+            if maybeMoreOrLess == "больше" {
+                correctAnswer = rating > (Float(randomScore) / 10)
+            } else {
+                correctAnswer = rating < (Float(randomScore) / 10)
+            }
             
             let question = QuizQuestion(image: imageData,
-                                         text: text,
-                                         correctAnswer: correctAnswer)
+                                        text: text,
+                                        correctAnswer: correctAnswer)
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -73,7 +82,6 @@ class QuestionFactory: QuestionFactoryProtocol {
             }
         }
     }
-}
     
     
     /* private let questions: [QuizQuestion] = [
@@ -119,4 +127,4 @@ class QuestionFactory: QuestionFactoryProtocol {
      correctAnswer: false)
      ]
      */
-
+}
